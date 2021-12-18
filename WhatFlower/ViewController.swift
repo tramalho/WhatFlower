@@ -56,7 +56,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             var finalTitle = "Unknow Flower"
             
             if let firstResult = results.first {
-                finalTitle = firstResult.identifier
+                finalTitle = firstResult.identifier.capitalized
             }
             
             self.navigationItem.title = finalTitle
