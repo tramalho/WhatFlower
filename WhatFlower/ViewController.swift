@@ -14,6 +14,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     private let imagePickerController =  UIImagePickerController()
     
     @IBOutlet weak var imageView: UIImageView!
+    
+    private lazy var requestManager: RequestManager = {
+        return RequestManager()
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -57,6 +62,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             
             if let firstResult = results.first {
                 finalTitle = firstResult.identifier.capitalized
+                self.requestManager.get(flowerName: finalTitle)
             }
             
             self.navigationItem.title = finalTitle
