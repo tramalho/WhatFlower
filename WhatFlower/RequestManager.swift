@@ -10,7 +10,7 @@ import Alamofire
 import SwiftyJSON
 
 protocol RequestDelegate {
-    func success(description: String)
+    func success(description: String, imageURL: String)
 }
 
 class RequestManager {
@@ -19,13 +19,14 @@ class RequestManager {
     private var parameters : [String:String] = [
         "format" : "json",
         "action" : "query",
-        "prop" : "extracts",
+        "prop" : "extracts|pageimages",
         "exintro" : "",
         "explaintext" : "",
         "titles" : "flowerName",
         "indexpageids" : "",
         "redirects" : "1",
-        ]
+        "pithumbsize": "500"
+    ]
     
     var delegate: RequestDelegate?
     
@@ -35,12 +36,13 @@ class RequestManager {
         AF.request(wikipediaURl, method: .get, parameters: parameters).responseString { response in
             
             switch response.result {
-            
             case .success(_):
                 let jsonResponse = JSON(response.data!)
+                print(jsonResponse)
                 let pageId = jsonResponse["query"]["pageids"][0].stringValue
                 let description = jsonResponse["query"]["pages"][pageId]["extract"].stringValue
-                self.delegate?.success(description: description)
+                let imageURL = jsonResponse["query"]["pages"][pageId]["thumbnail"]["source"].stringValue
+                self.delegate?.success(description: description, imageURL: imageURL)
             case .failure(_):
                 print("failure")
             }

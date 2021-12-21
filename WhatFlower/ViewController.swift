@@ -8,6 +8,7 @@
 import UIKit
 import CoreML
 import Vision
+import SDWebImage
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, RequestDelegate {
 
@@ -39,7 +40,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
         if let safeImage = info[.editedImage] as? UIImage {
-            imageView.image = safeImage
+            //imageView.image = safeImage
             
             guard let ciImage = CIImage(image: safeImage) else {
                   fatalError("is not possible convert UIImage into CIImage")
@@ -86,8 +87,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
     
-    internal func success(description: String) {
+    internal func success(description: String, imageURL: String) {
         label.text = description
+        imageView.sd_setImage(with: URL(string: imageURL), completed: nil)
     }
 }
 
