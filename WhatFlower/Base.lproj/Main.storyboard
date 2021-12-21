@@ -16,17 +16,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vQj-Ht-4XU">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
-                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="F8J-5f-pQy">
+                                <rect key="frame" x="10" y="98" width="394" height="754"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vQj-Ht-4XU">
+                                        <rect key="frame" x="0.0" y="0.0" width="394" height="367"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="r2b-vo-eZC">
+                                        <rect key="frame" x="0.0" y="387" width="394" height="367"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="vQj-Ht-4XU" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Brh-yp-sjW"/>
-                            <constraint firstItem="vQj-Ht-4XU" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="I03-wi-Gm6"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="vQj-Ht-4XU" secondAttribute="bottom" id="NEJ-WH-zjr"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="vQj-Ht-4XU" secondAttribute="trailing" id="aDY-HG-9pH"/>
+                            <constraint firstItem="F8J-5f-pQy" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="Apa-0W-cMN"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="F8J-5f-pQy" secondAttribute="trailing" constant="10" id="hY0-qz-3h5"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="F8J-5f-pQy" secondAttribute="bottom" constant="10" id="n4d-S1-xYK"/>
+                            <constraint firstItem="F8J-5f-pQy" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="zP3-Ue-yI9"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="JmM-bc-ouB">
@@ -38,11 +49,12 @@
                     </navigationItem>
                     <connections>
                         <outlet property="imageView" destination="vQj-Ht-4XU" id="bYA-uQ-WyL"/>
+                        <outlet property="label" destination="r2b-vo-eZC" id="uvX-Xn-XRp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="739" y="51"/>
+            <point key="canvasLocation" x="737.68115942028987" y="50.892857142857139"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="GMe-o4-N3Z">

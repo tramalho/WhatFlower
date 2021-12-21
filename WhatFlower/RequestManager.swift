@@ -7,6 +7,11 @@
 
 import Foundation
 import Alamofire
+import SwiftyJSON
+
+protocol RequestDelegate {
+    func success(description: String)
+}
 
 class RequestManager {
     private let wikipediaURl = "https://en.wikipedia.org/w/api.php"
@@ -22,19 +27,23 @@ class RequestManager {
         "redirects" : "1",
         ]
     
+    var delegate: RequestDelegate?
+    
     public func get(flowerName: String) {
         parameters["titles"] = flowerName
         
-        AF.request(wikipediaURl, method: .get, parameters: parameters).responseJSON { response in
+        AF.request(wikipediaURl, method: .get, parameters: parameters).responseString { response in
             
             switch response.result {
             
             case .success(_):
-                print(response.result)
+                let jsonResponse = JSON(response.data!)
+                let pageId = jsonResponse["query"]["pageids"][0].stringValue
+                let description = jsonResponse["query"]["pages"][pageId]["extract"].stringValue
+                self.delegate?.success(description: description)
             case .failure(_):
                 print("failure")
             }
-            
         }
         
     }

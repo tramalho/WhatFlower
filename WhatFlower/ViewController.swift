@@ -9,14 +9,19 @@ import UIKit
 import CoreML
 import Vision
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, RequestDelegate {
 
     private let imagePickerController =  UIImagePickerController()
     
     @IBOutlet weak var imageView: UIImageView!
     
+    @IBOutlet weak var label: UILabel!
+    
+    
     private lazy var requestManager: RequestManager = {
-        return RequestManager()
+        let requestManager = RequestManager()
+        requestManager.delegate = self
+        return requestManager
     }()
     
     override func viewDidLoad() {
@@ -81,5 +86,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
     
+    internal func success(description: String) {
+        label.text = description
+    }
 }
 
